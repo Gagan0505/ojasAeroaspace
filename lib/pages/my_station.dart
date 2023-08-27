@@ -55,12 +55,12 @@ class _MyStationState extends State<MyStation> {
     color: Colors.white,
     shadowColor: Colors.black26,
     elevation: 12,
-    maxWidth: 500,
+    maxWidth: double.infinity,
     cornerRadius: 16,
     cornerRadiusOnFullscreen: 0.0,
     closeOnBackdropTap: true,
     closeOnBackButtonPressed: true,
-    addTopViewPaddingOnFullscreen: true,
+    // addTopViewPaddingOnFullscreen: true,
     isBackdropInteractable: true,
     border: Border.all(color: Colors.grey.shade300,
     width: 3,
@@ -77,7 +77,7 @@ class _MyStationState extends State<MyStation> {
     // liftOnScrollHeaderElevation: 12.0,
     body: _buildBody(),
     headerBuilder: buildheader,
-    builder: buildChild,
+    builder: buildChild
 
   );
  }
@@ -85,6 +85,7 @@ class _MyStationState extends State<MyStation> {
 
 Widget buildheader(BuildContext context, SheetState state) {
   return Column(
+    mainAxisSize: MainAxisSize.min,
     children: [
       const SizedBox(height: 2,),
       Align(
@@ -120,93 +121,87 @@ Widget buildheader(BuildContext context, SheetState state) {
             )
          ),
     const SizedBox(height: 5,),
-    Container(
-    height: 1,
-    color: Colors.grey.shade300,
-  )
     ],
   );
-}
+  }
 
-Widget buildChild(BuildContext context, SheetState state) {
+  Widget buildChild(BuildContext context, SheetState state) {
   final divider = Container(
     height: 1,
     color: Colors.grey.shade300,
   );
 
-  return SingleChildScrollView(
-    scrollDirection: Axis.vertical,
-    child: Column(
-      // mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-      divider,
-       const Padding(
-            padding: EdgeInsets.all(14.0),
-          child: Text('Available Drone Spraying',
-            style: TextStyle(
-           color: Color(0xFF200E32),
-            fontSize: 16,
-            fontFamily: 'Mukta',
-            fontWeight: FontWeight.w500,
-            height: 1.38,
-            ),
-            ),
-           ),
-           const Padding(
-             padding: EdgeInsets.all(8.0),
-             child: DetailCard(imagePath: 'lib/Icons/drones.jpg', equipment: 'Krishakthi', description: '  drones with smart nozzle spraying starting from ', price: '\$51'),
-           ),
-            const Padding(
-             padding: EdgeInsets.all(8.0),
-             child: DetailCard(imagePath: 'lib/Icons/drones.jpg', equipment: 'Krishakthi', description: '  drones with smart nozzle spraying starting from ', price: '\$32'),
-           ),
-            const Padding(
-             padding: EdgeInsets.all(8.0),
-             child: DetailCard(imagePath: 'lib/Icons/drones.jpg', equipment: 'Krishakthi', description: '  drones with smart nozzle spraying starting from ', price: '\$32'),
-           ),   
-           const Padding(
-             padding: EdgeInsets.all(14.0),
-             child: Text(
-            'Recommended for you',
-            style: TextStyle(
-            color: Color(0xFF200E32),
-            fontSize: 16,
-            fontFamily: 'Mukta',
-            fontWeight: FontWeight.w500,
-            height: 1.38,
-            ),
-            ),
-           ),    
-       const SingleChildScrollView(
-         scrollDirection: Axis.horizontal,
-         child: Row(
-           children: [
-             SizedBox(width: 10.0,),
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    divider,
+     const Padding(
+          padding: EdgeInsets.all(14.0),
+        child: Text('Available Drone Spraying',
+          style: TextStyle(
+         color: Color(0xFF200E32),
+          fontSize: 16,
+          fontFamily: 'Mukta',
+          fontWeight: FontWeight.w500,
+          height: 1.38,
+          ),
+          ),
+         ),
+         const Padding(
+           padding: EdgeInsets.all(8.0),
+           child: DetailCard(imagePath: 'lib/Icons/drones.jpg', equipment: 'Krishakthi', description: '  drones with smart nozzle spraying starting from ', price: '\$51'),
+         ),
+          const Padding(
+           padding: EdgeInsets.all(8.0),
+           child: DetailCard(imagePath: 'lib/Icons/drones.jpg', equipment: 'Krishakthi', description: '  drones with smart nozzle spraying starting from ', price: '\$32'),
+         ),
+          const Padding(
+           padding: EdgeInsets.all(8.0),
+           child: DetailCard(imagePath: 'lib/Icons/drones.jpg', equipment: 'Krishakthi', description: '  drones with smart nozzle spraying starting from ', price: '\$32'),
+         ),   
+         const Padding(
+           padding: EdgeInsets.all(14.0),
+           child: Text(
+          'Recommended for you',
+          style: TextStyle(
+          color: Color(0xFF200E32),
+          fontSize: 16,
+          fontFamily: 'Mukta',
+          fontWeight: FontWeight.w500,
+          height: 1.38,
+          ),
+          ),
+         ),    
+     const SingleChildScrollView(
+       scrollDirection: Axis.horizontal,
+       child: Row(
+         children: [
+           SizedBox(width: 10.0,),
+           RecommendationCard(
+  imagePath: 'lib/Icons/farmland.png',
+  title: 'Book Drone Spray',
+  description: 'Spray your farms with smart precision spraying technology.',
+             ),
+             
              RecommendationCard(
-    imagePath: 'lib/Icons/farmland.png',
-    title: 'Book Drone Spray',
-    description: 'Spray your farms with smart precision spraying technology.',
-               ),
-               
-               RecommendationCard(
-    imagePath: 'lib/Icons/Tractor.png',
-    title: 'Book Tractor',
-    description: 'Spray your farms with smart precision spraying technology.',
-    ),
-              
-      
-    ],)
-    )
-    ]
-    ),
+  imagePath: 'lib/Icons/Tractor.png',
+  title: 'Book Tractor',
+  description: 'Spray your farms with smart precision spraying technology.',
+  ),
+            
+    
+  ],)
+  )
+  ]
   );
 
-}
+  }
 
-Widget _buildBody() {
+  Widget _buildBody() {
   
-  return Stack(
-    children: <Widget>[
+    return Stack(
+     children: <Widget>[
       GoogleMap(
             initialCameraPosition: const CameraPosition(
               target: currentLocation,
